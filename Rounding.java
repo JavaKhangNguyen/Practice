@@ -22,6 +22,12 @@ public class Rounding {
         round.add(new JLabel("Enter the number of 0s to be rounded up to: "));
         round.add(key);
         int result = JOptionPane.showConfirmDialog(null,round,"Java Rounding",JOptionPane.OK_CANCEL_OPTION);
+        while(Integer.parseInt(key.getText()) < 0 || Integer.parseInt(key.getText()) > 10 || 
+        Integer.parseInt(num.getText()) < 0 || Integer.parseInt(num.getText()) > Math.pow(10, 9)){
+            JOptionPane.showMessageDialog(null, "Invalid input! Please input again!","Java Rounding",
+            JOptionPane.WARNING_MESSAGE);
+            result = JOptionPane.showConfirmDialog(null,round,"Java Rounding",JOptionPane.OK_CANCEL_OPTION);
+        }
         if(result == JOptionPane.OK_OPTION){
             RoundingInteger(Integer.parseInt(num.getText()),Integer.parseInt(key.getText()));
         }
