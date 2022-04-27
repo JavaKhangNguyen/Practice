@@ -15,16 +15,21 @@ public class RSP {
             result = WindowConstants.EXIT_ON_CLOSE;
         }
         else {
-            while(player1.getText().equalsIgnoreCase("R") == false && 
+            while((player1.getText().equalsIgnoreCase("R") == false && 
             player1.getText().equalsIgnoreCase("S") == false && 
-            player1.getText().equalsIgnoreCase("P") == false &&
-            player2.getText().equalsIgnoreCase("R") == false && 
+            player1.getText().equalsIgnoreCase("P") == false) ||
+            (player2.getText().equalsIgnoreCase("R") == false && 
             player2.getText().equalsIgnoreCase("S") == false && 
-            player2.getText().equalsIgnoreCase("P") == false){
+            player2.getText().equalsIgnoreCase("P") == false) || 
+            player1.getText().length() > 1 || player2.getText().length() > 1){
             JOptionPane.showMessageDialog(null, "Invalid input! Please input again",
             "Rock Paper Scissor",JOptionPane.WARNING_MESSAGE);
             result = JOptionPane.showConfirmDialog(null, RSP,"Rock Paper Scissor",
             JOptionPane.OK_CANCEL_OPTION);
+            if(result == JOptionPane.CANCEL_OPTION){
+                result = WindowConstants.EXIT_ON_CLOSE;
+                return;
+            }
             }
             if(player1.getText().equalsIgnoreCase(player2.getText())){
                 JOptionPane.showMessageDialog(null,"Draw","Rock Paper Scissors",

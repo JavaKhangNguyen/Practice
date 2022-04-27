@@ -22,7 +22,7 @@ public class Banking {
         Integer.parseInt(month.getText()) <= 0 || 
         Integer.parseInt(month.getText()) > Math.pow(10, 9) || 
         Double.parseDouble(rate.getText()) > Math.pow(10, 9) || 
-        Double.parseDouble(rate.getText()) <= 0 || Double.parseDouble(rate.getText()) > 1){
+        Double.parseDouble(rate.getText()) <= 0 || Double.parseDouble(rate.getText()) >= 1){
             JOptionPane.showMessageDialog(null, 
             "Invalid input! Please input again","Java Banking", 
             JOptionPane.WARNING_MESSAGE);

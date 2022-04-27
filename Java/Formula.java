@@ -1,7 +1,9 @@
 package Java;
 import javax.swing.*;
+import java.text.DecimalFormat;
 public class Formula {
    public static void main(String[] args) {
+    DecimalFormat df = new DecimalFormat("0");
     JTextField x = new JTextField();
     JTextField n = new JTextField();
     Box math = Box.createVerticalBox();
@@ -26,7 +28,8 @@ public class Formula {
     }
     if(result == JOptionPane.OK_OPTION){
         JOptionPane.showMessageDialog(null,"(x^2 + 1)^n = (" + 
-        Double.parseDouble(x.getText()) + "^2 + 1)^" + Double.parseDouble(n.getText()) + " = " + 
+        Double.parseDouble(x.getText()) + "^2 + 1)^" 
+        + df.format(Double.parseDouble(n.getText())) + " = " + 
         Math.round(Math.pow((Math.pow(Double.parseDouble(x.getText()),2) + 1),
         Double.parseDouble(n.getText()))*100.0)/100.0,"Java Math", 
         JOptionPane.INFORMATION_MESSAGE);
