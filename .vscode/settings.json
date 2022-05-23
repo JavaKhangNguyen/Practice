@@ -5,5 +5,7 @@
         "cmath": "cpp",
         "ostream": "cpp"
     },
-    "java.project.sourcePaths": []
+    "java.project.sourcePaths": [
+        "."
+    ]
 }
