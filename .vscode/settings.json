@@ -4,5 +4,6 @@
         "iomanip": "cpp",
         "cmath": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "java.project.sourcePaths": []
 }
