@@ -14,6 +14,10 @@ public class CirclePos {
         circle.add(distance);  
         int result = JOptionPane.showConfirmDialog(null, circle, "Java Circle Pos", 
         JOptionPane.OK_CANCEL_OPTION);
+        if(result == JOptionPane.CANCEL_OPTION){
+            result = WindowConstants.EXIT_ON_CLOSE;
+            return;
+        }
         double r1 = Double.parseDouble(radius1.getText());
         double r2 = Double.parseDouble(radius2.getText());
         double d = Double.parseDouble(distance.getText());
