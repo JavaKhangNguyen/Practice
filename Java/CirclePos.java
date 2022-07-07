@@ -27,6 +27,10 @@ public class CirclePos {
             JOptionPane.WARNING_MESSAGE);
             result = JOptionPane.showConfirmDialog(null, circle, "Java Circle Pos", 
         JOptionPane.OK_CANCEL_OPTION);
+            if(result == JOptionPane.CANCEL_OPTION){
+                result = WindowConstants.EXIT_ON_CLOSE;
+                return;
+            }
             r1 = Double.parseDouble(radius1.getText());
             r2 = Double.parseDouble(radius2.getText());
             d = Double.parseDouble(distance.getText());
