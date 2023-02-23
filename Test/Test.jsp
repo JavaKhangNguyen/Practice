@@ -7,6 +7,6 @@
     </head>
     <body>
         <!-- Stuff goes here -->
-        <%
+        <%! Java function goes here %>
     </body>
 </html>
