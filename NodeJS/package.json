@@ -3,10 +3,11 @@
     "type": "commonjs",
     "scripts": {
         "start": "nodemon main.js",
-        "start:ts": "nodemon main.ts"
+        "start:ts": "esrun --watch main.ts"
     },
     "devDependencies": {
         "@types/node": "^22.10.5",
+        "esrun": "^3.2.26",
         "nodemon": "^3.1.7",
         "typescript": "^5.7.2"
     }
