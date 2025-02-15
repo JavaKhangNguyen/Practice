@@ -5,21 +5,31 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 
 Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend, ChartDataLabels);
 
+type DatasetOption = 'both' | 'basicSalary' | 'benefitsTaxFees';
+
 interface BarChartProps {
   data: {
     basicSalary: number[];
     benefitsTaxFees: number[];
   };
+  selectedDataset: DatasetOption;
+}
+interface PrevData {
+  basicSalary: number[];
+  benefitsTaxFees: number[];
 }
 
-export const BarChart: React.FC<BarChartProps> = ({ data }) => {
+export const BarChart: React.FC<BarChartProps> = ({ data, selectedDataset}) => {
   const labels = ["USA", "Latin America", "TalentX"];
   const chartRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [prevData, setPrevData] = useState<PrevData>({ basicSalary: [], benefitsTaxFees: [] });
 
-  const basicSalaryData = data.basicSalary;
-  const benefitsTaxFeesData = data.benefitsTaxFees;
-  const totalValues = basicSalaryData.map((val, idx) => val + benefitsTaxFeesData[idx]);
+  const basicSalaryData = selectedDataset === 'both' || selectedDataset === 'basicSalary' ? data.basicSalary : [];
+  const benefitsTaxFeesData = selectedDataset === 'both' || selectedDataset === 'benefitsTaxFees' ? data.benefitsTaxFees : [];
+  const totalValues = selectedDataset === 'both' 
+  ? basicSalaryData.map((val, idx) => val + (benefitsTaxFeesData[idx] || 0))
+  : selectedDataset === 'basicSalary' ? basicSalaryData : benefitsTaxFeesData;
 
   const chartData = {
     labels,
@@ -36,8 +46,9 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
         },
         stack: "stack1",
         barThickness: isMobile ? 66 : 159,
+        borderRadius: selectedDataset === 'basicSalary' ? 16 : 0,
         datalabels: {
-          display: false,
+          display: selectedDataset === 'basicSalary'
         },
       },
       {
@@ -52,7 +63,7 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
         },
         stack: "stack1",
         barThickness: isMobile ? 66 : 159,
-        borderRadius: 16
+        borderRadius: 16,
       },
     ],
   };
@@ -60,6 +71,18 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      duration: 1000, 
+      easing: 'easeInOutQuad'
+    },
+    transitions: {
+      active: {
+        animation: {
+          duration: 1000, 
+          easing: 'easeOutQuad',
+        },
+      },
+    },
     scales: {
      x: {
       stacked: true,
@@ -137,6 +160,10 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
     };
   }, []);
 
+  // PrevData is redundant but this will ensure the borderRadius for the first dataset when it is triggered
+  useEffect(() => {
+    setPrevData({ basicSalary: basicSalaryData, benefitsTaxFees: benefitsTaxFeesData });
+  }, [selectedDataset]);
 
   return (
     <div className="w-full max-w-4xl p-4 md:px-16">
