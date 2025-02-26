@@ -42,7 +42,7 @@ export default function Product() {
   
 
   return (
-    <div className="flex flex-col items-center gap-6 p-4 m-4 border border-gray-300 rounded-lg">
+    <div className="flex flex-col items-center gap-6 p-4 m-4">
       <form
         className="flex flex-col gap-4 w-full max-w-md"
         onSubmit={(e) => {
