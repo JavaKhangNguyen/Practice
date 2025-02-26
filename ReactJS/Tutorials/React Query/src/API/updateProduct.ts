@@ -4,7 +4,6 @@ import { useMutation, useQueryClient } from "react-query";
 export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
 
-
   const updateProductFN = async (productBody: any) => {
     const formData = new FormData();
   
@@ -14,10 +13,8 @@ export const useUpdateProduct = () => {
         }
     });
 
-    const { data } = await axios.put(
-      `https://dummyjson.com/products/${productBody.id}`, formData,
-      {headers: {'Content-Type': 'multipart/form-data'}}
-    );
+    const { data } = await axios.put(`https://dummyjson.com/products/${productBody.id}`, formData,
+      {headers: {'Content-Type': 'multipart/form-data'}});
     return data;
   };
 
