@@ -1,4 +1,7 @@
 def removeDuplicates(numList):
+    if(len(numList) == 0):
+        return ValueError("List is empty")
+    
     counts = {}
     removed = []
     max_count = 0
@@ -26,6 +29,10 @@ def removeDuplicates(numList):
 
 
 result = removeDuplicates([11, 11, 15, 15, 15, 13, 16, 13, 16, 11])
-print("Element(s) duplicated the most: ", result["maxOccurElements"])
-print("Number of times the most duplicated elements appear: ", result["maxTimeOccur"])
-print("Final array after removing duplicates: ", result["removedDuplicates"])
+# result = removeDuplicates([])
+if(type(result) != ValueError):
+    print("Element(s) duplicated the most: ", result["maxOccurElements"])
+    print("Number of times the most duplicated elements appear: ", result["maxTimeOccur"])
+    print("Final array after removing duplicates: ", result["removedDuplicates"])
+else:
+    print(result)
